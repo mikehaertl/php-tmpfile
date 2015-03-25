@@ -5,7 +5,7 @@ php-tmpfile
 [![Latest Stable Version](https://poser.pugx.org/mikehaertl/php-tmpfile/v/stable.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
 [![Total Downloads](https://poser.pugx.org/mikehaertl/php-tmpfile/downloads.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
 [![Latest Unstable Version](https://poser.pugx.org/mikehaertl/php-tmpfile/v/unstable.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
-[![HHVM Status](http://hhvm.h4cc.de/badge/yiisoft/yii2-dev.png)](http://hhvm.h4cc.de/package/mikehaertl/php-tmpfile)
+[![HHVM Status](http://hhvm.h4cc.de/badge/mikehaertl/php-tmpfile.png)](http://hhvm.h4cc.de/package/mikehaertl/php-tmpfile)
 [![License](https://poser.pugx.org/mikehaertl/php-tmpfile/license.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
 
 A convenience class for temporary files.
