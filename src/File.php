@@ -98,10 +98,10 @@ class File
      */
     public static function getTempDir()
     {
-        if (function_exists('sys_get_temp_dir')) {
-            return sys_get_temp_dir();
-        } elseif ( ($tmp = getenv('TMP')) || ($tmp = getenv('TEMP')) || ($tmp = getenv('TMPDIR')) ) {
+        if (($tmp = getenv('TMP')) || ($tmp = getenv('TEMP')) || ($tmp = getenv('TMPDIR'))) {
             return realpath($tmp);
+        } elseif ( function_exists('sys_get_temp_dir') ) {
+            return sys_get_temp_dir();
         } else {
             return '/tmp';
         }
