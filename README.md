@@ -13,7 +13,7 @@ A convenience class for temporary files.
 ## Features
 
  * Create temporary file with arbitrary content
- * Delete file after use
+ * Delete file after use (can be disabled)
  * Send file to client, either inline or with save dialog
  * Save file locally
 
@@ -36,3 +36,12 @@ echo $file->getFileName();
 echo $file->getTempDir();
 ```
 
+If you want to keep the temporary file, e.g. for debugging, you can set the `$delete` property to false:
+
+```php
+<?php
+use mikehaertl\tmp\File;
+
+$file = new File('some content', '.html');
+$file->delete = false;
+```

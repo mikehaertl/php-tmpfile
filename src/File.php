@@ -7,11 +7,17 @@ namespace mikehaertl\tmp;
  * A convenience class for temporary files.
  *
  * @author Michael Härtl <haertl.mike@gmail.com>
- * @version 1.0.1-dev
+ * @version 1.1.0
  * @license http://www.opensource.org/licenses/MIT
  */
 class File
 {
+    /**
+     * @var bool whether to delete the tmp file when it's no longer referenced or when the request ends.
+     * Default is `true`.
+     */
+    public $delete = true;
+
     /**
      * @var string the name of this file
      */
@@ -45,11 +51,13 @@ class File
     }
 
     /**
-     * Delete tmp file on shutdown
+     * Delete tmp file on shutdown if `$delete` is `true`
      */
     public function __destruct()
     {
-        unlink($this->_fileName);
+        if ($this->delete) {
+            unlink($this->_fileName);
+        }
     }
 
     /**
