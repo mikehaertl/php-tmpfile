@@ -74,7 +74,12 @@ class File
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
         header('Content-Type: '.$contentType);
         header('Content-Transfer-Encoding: binary');
-        header('Content-Length: '.filesize($this->_fileName));
+
+        // #84: Content-Length leads to "network connection was lost" on iOS
+        $isIOS = preg_match('/i(phone|pad|pod)/i', $_SERVER['HTTP_USER_AGENT']);
+        if (!$isIOS) {
+            header('Content-Length: '.filesize($this->_fileName));
+        }
 
         if ($filename!==null || $inline) {
             $disposition = $inline ? 'inline' : 'attachment';
