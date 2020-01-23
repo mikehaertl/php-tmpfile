@@ -83,7 +83,11 @@ class File
 
         if ($filename!==null || $inline) {
             $disposition = $inline ? 'inline' : 'attachment';
-            header('Content-Disposition: ' . $disposition . '; filename=' .$filename. '; filename*=UTF-8\'\''.rawurlencode($filename));
+            header(
+                'Content-Disposition: ' . $disposition .
+                '; filename=' . $filename .
+                "; filename*=UTF-8''" . rawurlencode($filename)
+            );
         }
 
         readfile($this->_fileName);
