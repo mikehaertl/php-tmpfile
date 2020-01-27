@@ -78,8 +78,11 @@ class File
         header('Content-Type: '.$contentType);
         header('Content-Transfer-Encoding: binary');
 
+        //#11 Undefined index: HTTP_USER_AGENT
+        $userAgent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+
         // #84: Content-Length leads to "network connection was lost" on iOS
-        $isIOS = preg_match('/i(phone|pad|pod)/i', $_SERVER['HTTP_USER_AGENT']);
+        $isIOS = preg_match('/i(phone|pad|pod)/i', $userAgent);
         if (!$isIOS) {
             header('Content-Length: ' . filesize($this->_fileName));
         }
