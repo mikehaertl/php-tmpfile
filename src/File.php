@@ -113,7 +113,7 @@ class File
      */
     public function getFileName()
     {
-        return $this->_fileName;
+        return basename($this->_fileName);
     }
 
     /**
