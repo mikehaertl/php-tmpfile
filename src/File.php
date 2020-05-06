@@ -89,10 +89,11 @@ class File
 
         if ($filename !== null || $inline) {
             $disposition = $inline ? 'inline' : 'attachment';
+            $encodedFilename = rawurlencode($filename);
             header(
-                'Content-Disposition: ' . $disposition .
-                '; filename=' . $filename .
-                "; filename*=UTF-8''" . rawurlencode($filename)
+                "Content-Disposition: $disposition; " .
+                "filename=\"$filename\"; " .
+                "filename*=UTF-8''$encodedFilename"
             );
         }
 
