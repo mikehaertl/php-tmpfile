@@ -56,7 +56,7 @@ class File
      */
     public function __destruct()
     {
-        if ($this->delete) {
+        if ($this->delete && file_exists($this->_fileName)) {
             unlink($this->_fileName);
         }
     }
