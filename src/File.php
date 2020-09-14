@@ -136,6 +136,21 @@ class File
     }
 
     /**
+     * Keep a reference for this object until the request ends.
+     * This allows to keep the file during a request, even if the object is not passed back.
+     *
+     * @return $this
+     */
+    public function keepDuringRequest()
+    {
+        register_shutdown_function(function () {
+            $this;
+        });
+
+        return $this;
+    }
+
+    /**
      * @return string the full file name
      */
     public function __toString()

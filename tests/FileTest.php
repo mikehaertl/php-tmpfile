@@ -86,6 +86,18 @@ class FileTest extends TestCase
         unlink($out);
     }
 
+    public function testCanKeepTempFileEvenIfItsNotLongerReferenced()
+    {
+        $content = 'test content';
+        $tmp = new File($content);
+        $tmp->keepDuringRequest();
+        $fileName = $tmp->getFileName();
+
+        $this->assertFileExists($fileName);
+        unset($tmp);
+        $this->assertFileExists($fileName);
+    }
+
     public function testCanCastToFileName()
     {
         $content = 'test content';
