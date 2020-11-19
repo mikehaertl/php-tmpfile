@@ -70,8 +70,20 @@ class File
      * @param bool $inline whether to force inline display of the file, even if
      * filename is present.
      */
-    public function send($filename = null, $contentType, $inline = false)
+    public function send($filename = null, $contentType = null, $inline = false)
     {
+        if (is_null($contentType)) {
+            $contentType = 'application/octet-stream';
+
+            if (!is_null($filename)) {
+                $mimeContentType = mime_content_type($filename);
+
+                if ($mimeContentType !== false) {
+                    $contentType = $mimeContentType;
+                }
+            }
+        }
+
         header('Pragma: public');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
