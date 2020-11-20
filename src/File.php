@@ -11,6 +11,8 @@ namespace mikehaertl\tmp;
  */
 class File
 {
+    const DEFAULT_CONTENT_TYPE = 'application/octet-stream';
+
     /**
      * @var bool whether to delete the tmp file when it's no longer referenced
      * or when the request ends.  Default is `true`.
@@ -66,16 +68,24 @@ class File
      *
      * @param string|null $filename the filename to send. If empty, the file is
      * streamed inline.
-     * @param string $contentType the Content-Type header
+     * @param string|null $contentType the Content-Type header to send. If
+     * `null` the type is auto-detected and if that fails
+     * 'application/octet-stream' is used.
      * @param bool $inline whether to force inline display of the file, even if
      * filename is present.
      */
-    public function send($filename = null, $contentType, $inline = false)
+    public function send($filename = null, $contentType = null, $inline = false)
     {
+        if ($contentType === null) {
+            $contentType = @mime_content_type($this->_filename);
+            if ($contentType === false) {
+                $contentType = self::DEFAULT_CONTENT_TYPE;
+            }
+        }
         header('Pragma: public');
         header('Expires: 0');
         header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Content-Type: '.$contentType);
+        header('Content-Type: ' . $contentType);
         header('Content-Transfer-Encoding: binary');
 
         //#11 Undefined index: HTTP_USER_AGENT
