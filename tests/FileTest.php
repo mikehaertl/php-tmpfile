@@ -16,7 +16,11 @@ class FileTest extends TestCase
         $readContent = file_get_contents($fileName);
         $this->assertEquals($content, $readContent);
         unset($tmp);
-        $this->assertFileNotExists($fileName);
+        if (phpUnitVersion('<', '9')) {
+            $this->assertFileNotExists($fileName);
+        } else {
+            $this->assertFileDoesNotExist($fileName);
+        }
     }
 
     public function testCanCreateFileWithSuffix()
@@ -64,7 +68,11 @@ class FileTest extends TestCase
         $readContent = file_get_contents($out);
         $this->assertEquals($content, $readContent);
         unset($tmp);
-        $this->assertFileNotExists($fileName);
+        if (phpUnitVersion('<', '9')) {
+            $this->assertFileNotExists($fileName);
+        } else {
+            $this->assertFileDoesNotExist($fileName);
+        }
         $this->assertFileExists($out);
         unlink($out);
     }
