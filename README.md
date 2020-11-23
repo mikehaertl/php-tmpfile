@@ -1,11 +1,10 @@
 php-tmpfile
 ===========
 
-[![Build Status](https://secure.travis-ci.org/mikehaertl/php-tmpfile.png)](http://travis-ci.org/mikehaertl/php-tmpfile)
-[![Latest Stable Version](https://poser.pugx.org/mikehaertl/php-tmpfile/v/stable.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
-[![Total Downloads](https://poser.pugx.org/mikehaertl/php-tmpfile/downloads)](https://packagist.org/packages/mikehaertl/php-tmpfile)
-[![Latest Unstable Version](https://poser.pugx.org/mikehaertl/php-tmpfile/v/unstable.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
-[![License](https://poser.pugx.org/mikehaertl/php-tmpfile/license.svg)](https://packagist.org/packages/mikehaertl/php-tmpfile)
+[![GitHub Tests](https://github.com/mikehaertl/php-tmpfile/workflows/Tests/badge.svg)](https://github.com/mikehaertl/php-tmpfile/actions)
+[![Packagist Version](https://img.shields.io/packagist/v/mikehaertl/php-tmpfile?label=version)](https://packagist.org/packages/mikehaertl/php-tmpfile)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/mikehaertl/php-tmpfile)](https://packagist.org/packages/mikehaertl/php-tmpfile)
+[![GitHub license](https://img.shields.io/github/license/mikehaertl/php-tmpfile)](https://github.com/mikehaertl/php-tmpfile/blob/master/LICENSE)
 
 A convenience class for temporary files.
 
