@@ -12,7 +12,7 @@ A convenience class for temporary files.
 
  * Create temporary file with arbitrary content
  * Delete file after use (can be disabled)
- * Send file to client, either inline or with save dialog
+ * Send file to client, either inline or with save dialog, optionally with custom HTTP headers
  * Save file locally
 
 ## Examples
@@ -25,6 +25,14 @@ $file = new File('some content', '.html');
 
 // send to client for download
 $file->send('home.html');
+// ... with custom content type (autodetected otherwhise)
+$file->send('home.html', 'application/pdf');
+// ... for inline display (download dialog otherwhise)
+$file->send('home.html', 'application/pdf', true);
+// ... with custom headers
+$file->send('home.html', 'application/pdf', true, [
+    'X-Header' => 'Example',
+]);
 
 // save to disk
 $file->saveAs('/dir/test.html');
@@ -42,4 +50,15 @@ use mikehaertl\tmp\File;
 
 $file = new File('some content', '.html');
 $file->delete = false;
+```
+
+Default HTTP headers can also be added:
+```php
+<?php
+use mikehaertl\tmp\File;
+
+File::$defaultHeader['X-Header'] = 'My Default';
+
+$file = new File('some content', '.html');
+$file->send('home.html');
 ```
