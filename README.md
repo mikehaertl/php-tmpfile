@@ -42,6 +42,23 @@ echo $file->getFileName();
 echo $file->getTempDir();
 ```
 
+In some places you might be forced to pass the file path instead of the instance, leading to the situation that the 
+instance is no longer referenced. You can delay the automatic delete until the end of the request by calling
+`keepDuringRequest()`.
+
+```php
+<?php
+use mikehaertl\tmp\File;
+
+function getTemporaryFilePath() : string
+{
+    $file = new File('some content');
+    $file->keepDuringRequest();
+
+    return $file->getFileName();
+}
+```
+
 If you want to keep the temporary file, e.g. for debugging, you can set the `$delete` property to false:
 
 ```php
