@@ -20,6 +20,13 @@ class File
     public $delete = true;
 
     /**
+     * @var bool whether to ignore if a user closed the connection so that the
+     * temporary file can still be cleaned up in that case. Default is `true`.
+     * @see https://www.php.net/manual/en/function.ignore-user-abort.php
+     */
+    public $ignoreUserAbort = true;
+
+    /**
      * @var array the list of static default headers to send when `send()` is
      * called as key/value pairs.
      */
@@ -126,6 +133,12 @@ class File
         }
 
         $this->sendHeaders($headers);
+
+        // #28: File not cleaned up if user aborts connection during download
+        if ($this->ignoreUserAbort) {
+            ignore_user_abort(true);
+        }
+
         readfile($this->_fileName);
     }
 
