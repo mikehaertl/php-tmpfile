@@ -62,3 +62,7 @@ File::$defaultHeader['X-Header'] = 'My Default';
 $file = new File('some content', '.html');
 $file->send('home.html');
 ```
+
+The `$ignoreUserAbort` option (on by default) mitigates an issue where the file
+was not deleted if the user closes the connection during a download. Try setting
+it to `false` if you experience unexpected behavior.
